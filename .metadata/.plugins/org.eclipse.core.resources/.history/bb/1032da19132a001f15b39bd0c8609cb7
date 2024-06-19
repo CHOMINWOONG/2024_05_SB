@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	String inputDan = request.getParameter("dan");
+	String inputLimit = request.getParameter("limit");
+	String inputColor = request.getParameter("color");
+
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입 페이지</title>
+</head>
+<body>
+	<h1>회원가입</h1>
+	
+	<form action="doJoin" method="post">
+		<div>
+			<div>아이디 : <input type="text" name="loginId" placeholder="아이디를 입력해주세요"/></div>
+			<div>비밀번호 : <input type="text" name="loginPw" placeholder="비밀번호를 입력해주세요"/></div>
+			<div>비밀번호 확인 : <input type="text" name="passwordChk" placeholder="비밀번호 확인을 입력해주세요"/></div>
+			<div>이름 : <input type="text" name="name" placeholder="이름을 입력해주세요"/></div>
+		</div>
+		<div>
+			<button>가입</button>
+			<a href="../home/main">취소</a>
+		</div>
+	</form>
+	
+</body>
+</html>

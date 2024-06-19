@@ -1,0 +1,86 @@
+package com.koreaIT.jsp.am;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.koreaIT.jsp.am.config.Config;
+import com.koreaIT.jsp.am.util.DBUtil;
+import com.koreaIT.jsp.am.util.SecSql;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("/member/doLogin")
+public class MemberDoLoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		response.setContentType("text/html; charset=UTF-8;");
+
+		Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+		try {
+			Class.forName(Config.getDBDriverName());
+			connection = DriverManager.getConnection(Config.getDBUrl(), Config.getDBUsr(), Config.getDBPW());
+
+			String userId = request.getParameter("userId");
+			String userPw = request.getParameter("userPw");
+			
+			
+			
+			SecSql sql = new SecSql();
+			
+			sql.append("SELECT * FROM `member`");
+			sql.append("WHERE userId = ?");
+			sql.append(", userPw = ?");
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPw);
+			
+			DBUtil.selectRow(connection, sql);
+
+			response.getWriter().append(String.format("<script>alert('%s님이 로그인하였습니다'); location.replace('../home/main');</script>", userId));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
+	}
+}

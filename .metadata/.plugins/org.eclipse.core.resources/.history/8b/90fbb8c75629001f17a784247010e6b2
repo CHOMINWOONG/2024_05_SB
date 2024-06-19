@@ -1,0 +1,37 @@
+<%@page import="java.util.Map"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	Map<String, Object> articleMap = (Map<String, Object>) request.getAttribute("articleMap");
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시물 수정하기</title>
+</head>
+<body>
+	
+	<div>
+		<h2><%= articleMap.get("id") %>번 게시물 수정하기</h2>
+		<div>작성일 : <%= articleMap.get("regDate") %></div>
+		<div>수정일 : <%= articleMap.get("updateDate") %></div>
+		<form action="doWrite" method="post">
+		<div>
+			<div>제목 : <input type="text" name="title" placeholder="제목을 입력해주세요" value="<%= articleMap.get("title") %>"/></div>
+			<div>내용 : <textarea name="body" <%= articleMap.get("body") %>></textarea></div>
+		</div>
+		<div>
+			<button>작성</button>
+			<a href="list">취소</a>
+		</div>
+	</form>
+		<div>수정할 제목 : </div>
+		<div>수정할 내용 : </div>
+	</div>
+	
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+INDEX VERSION 1.134
+D:\jmw\work2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3000419466.index
+\JSP_Article_Manager\src\main\java
+D:\jmw\work2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\415911523.index
+\JSP_Article_Manager\src\main\java
+D:\jmw\work2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\668880547.index
+\JSP_Article_Manager\src\main\java
+D:\jmw\work2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\325861262.index
+\JSP_Article_Manager\src\main\java

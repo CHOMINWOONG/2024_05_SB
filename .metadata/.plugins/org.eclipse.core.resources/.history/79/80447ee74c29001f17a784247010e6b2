@@ -1,0 +1,8 @@
+package com.koreaIT.jsp.am;
+
+public class Snippet {
+	public static void main(String[] args) {
+		sql.append("INSERT INTO article");
+	}
+}
+
